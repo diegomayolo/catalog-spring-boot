@@ -3,7 +3,8 @@ package com.dm.dscatalog.services;
 import com.dm.dscatalog.dto.CategoryDTO;
 import com.dm.dscatalog.entities.Category;
 import com.dm.dscatalog.repositories.CategoryRepository;
-import com.dm.dscatalog.services.exceptions.EntityNotFoundException;
+import com.dm.dscatalog.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,7 +55,7 @@ public class CategoryService
     * @param dto CategoryDTO
     * @return CategoryDTO
     */
-    @Transactional( readOnly = true )
+   @Transactional
    public CategoryDTO insert( CategoryDTO dto )
    {
         Category category = new Category();
@@ -63,5 +64,30 @@ public class CategoryService
         category = categoryRepository.save( category );
 
         return new CategoryDTO( category );
+   }
+
+   /**
+    * update
+    *
+    * @param id Long
+    * @param dto CategoryDTO
+    * @return CategoryDTO
+    */
+   @Transactional
+   public CategoryDTO update( Long id, CategoryDTO dto )
+   {
+      try
+      {
+         Category category = categoryRepository.getOne( id );
+         category.setName( dto.getName() );
+
+         category = categoryRepository.save( category );
+         return new CategoryDTO( category );
+      }
+
+      catch ( EntityNotFoundException e )
+      {
+          throw new ResourceNotFoundException( "Id not found " + id );
+      }
    }
 }
