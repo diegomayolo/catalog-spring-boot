@@ -47,4 +47,21 @@ public class CategoryService
                                .map(CategoryDTO::new )
                                .orElseThrow( () -> new EntityNotFoundException( "Entity not found" ) );
    }
+
+   /**
+    * insert
+    *
+    * @param dto CategoryDTO
+    * @return CategoryDTO
+    */
+    @Transactional( readOnly = true )
+   public CategoryDTO insert( CategoryDTO dto )
+   {
+        Category category = new Category();
+        category.setName( dto.getName() );
+
+        category = categoryRepository.save( category );
+
+        return new CategoryDTO( category );
+   }
 }
