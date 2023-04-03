@@ -3,6 +3,7 @@ package com.dm.dscatalog.resources;
 import com.dm.dscatalog.dto.CategoryDTO;
 import com.dm.dscatalog.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -78,5 +79,19 @@ public class CategoryResource
         dto = service.update(id, dto );
 
         return ResponseEntity.ok().body(dto);
+    }
+
+    /**
+     * delete
+     *
+     * @param id Long
+     * @return ResponseEntity<Void>
+     */
+    @DeleteMapping( value = "/{id}" )
+    public ResponseEntity<Void> delete( @PathVariable Long id )
+    {
+        service.delete(id);
+
+        return ResponseEntity.status( HttpStatus.OK ).build();
     }
 }

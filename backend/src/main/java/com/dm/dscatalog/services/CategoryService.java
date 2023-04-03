@@ -3,9 +3,11 @@ package com.dm.dscatalog.services;
 import com.dm.dscatalog.dto.CategoryDTO;
 import com.dm.dscatalog.entities.Category;
 import com.dm.dscatalog.repositories.CategoryRepository;
+import com.dm.dscatalog.services.exceptions.DatabaseException;
 import com.dm.dscatalog.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,18 +15,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 
+ *
  * @author dm
  */
 @Service
-public class CategoryService 
+public class CategoryService
 {
    @Autowired
    private CategoryRepository categoryRepository;
 
    /**
     * findAll
-    * 
+    *
     * @return List<Category>
     */
    @Transactional( readOnly = true )
@@ -46,7 +48,7 @@ public class CategoryService
    {
       return categoryRepository.findById(id )
                                .map(CategoryDTO::new )
-                               .orElseThrow( () -> new EntityNotFoundException( "Entity not found" ) );
+                               .orElseThrow( () -> new ResourceNotFoundException( "Entity not found" ) );
    }
 
    /**
@@ -88,6 +90,24 @@ public class CategoryService
       catch ( EntityNotFoundException e )
       {
           throw new ResourceNotFoundException( "Id not found " + id );
+      }
+   }
+
+   /**
+    * delete
+    *
+    * @param id Long
+    */
+   public void delete( Long id )
+   {
+      try
+      {
+         categoryRepository.deleteById(id);
+      }
+
+      catch ( DataIntegrityViolationException e )
+      {
+         throw new DatabaseException( "Integrity violation" );
       }
    }
 }
