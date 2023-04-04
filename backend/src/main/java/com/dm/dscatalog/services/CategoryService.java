@@ -99,6 +99,10 @@ public class CategoryService
     */
    public void delete( Long id )
    {
+      // if (!categoryRepository.findById(id).isPresent()) {
+      //    throw new ResourceNotFoundException("Id not found " + id);
+      // }
+
       try
       {
          categoryRepository.deleteById(id);
