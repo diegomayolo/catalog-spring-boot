@@ -33,6 +33,22 @@ public class ProductRepositoryTests
     }
 
     @Test
+    public void findShouldFindObjectWhenIdExists()
+    {
+        Optional<Product> optional = repository.findById( existingId );
+
+        Assertions.assertTrue( optional.isPresent() );
+    }
+
+    @Test
+    public void findShouldFindObjectWhenIdNonExists()
+    {
+        Optional<Product> optional = repository.findById( nonExistingId );
+
+        Assertions.assertFalse( optional.isPresent() );
+    }
+
+    @Test
     public void saveShouldPersistWithAutoincrementWhenIdIsNull()
     {
         // Arrange
