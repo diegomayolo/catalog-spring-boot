@@ -4,7 +4,6 @@ import com.dm.dscatalog.dto.ProductDTO;
 import com.dm.dscatalog.entities.Product;
 import com.dm.dscatalog.repositories.CategoryRepository;
 import com.dm.dscatalog.repositories.ProductRepository;
-import com.dm.dscatalog.services.exceptions.DatabaseException;
 import com.dm.dscatalog.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,7 +110,7 @@ public class ProductService
 
       catch ( DataIntegrityViolationException e )
       {
-         throw new DatabaseException( "Integrity violation" );
+         throw new ResourceNotFoundException( "Integrity violation" );
       }
    }
 
