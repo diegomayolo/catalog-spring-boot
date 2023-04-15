@@ -1,7 +1,7 @@
 package com.dm.dscatalog.repositories;
 
 import com.dm.dscatalog.entities.Product;
-import com.dm.dscatalog.repositories.factory.Factory;
+import factory.Factory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import java.util.Optional;
 
 /**
+ * The type Product repository tests.
  *
  * @author dm
  */
@@ -24,6 +25,11 @@ public class ProductRepositoryTests
     private long nonExistingId;
     private long countTotalProducts;
 
+    /**
+     * Sets up.
+     *
+     * @throws Exception the exception
+     */
     @BeforeEach
     void setUp() throws Exception
     {
@@ -32,6 +38,9 @@ public class ProductRepositoryTests
         countTotalProducts = 25L;
     }
 
+    /**
+     * Find should find object when id exists.
+     */
     @Test
     public void findShouldFindObjectWhenIdExists()
     {
@@ -40,6 +49,9 @@ public class ProductRepositoryTests
         Assertions.assertTrue( optional.isPresent() );
     }
 
+    /**
+     * Find should find object when id non exists.
+     */
     @Test
     public void findShouldFindObjectWhenIdNonExists()
     {
@@ -48,6 +60,9 @@ public class ProductRepositoryTests
         Assertions.assertFalse( optional.isPresent() );
     }
 
+    /**
+     * Save should persist with autoincrement when id is null.
+     */
     @Test
     public void saveShouldPersistWithAutoincrementWhenIdIsNull()
     {
@@ -63,6 +78,9 @@ public class ProductRepositoryTests
         Assertions.assertEquals( countTotalProducts + 1, product.getId() );
     }
 
+    /**
+     * Delete should delete object when id exists.
+     */
     @Test
     public void deleteShouldDeleteObjectWhenIdExists()
     {

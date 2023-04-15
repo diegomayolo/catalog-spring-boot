@@ -1,4 +1,4 @@
-package com.dm.dscatalog.repositories.factory;
+package factory;
 
 import com.dm.dscatalog.dto.ProductDTO;
 import com.dm.dscatalog.entities.Category;
