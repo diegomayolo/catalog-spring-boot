@@ -20,7 +20,7 @@ public class Factory
     public static Product createProduct()
     {
         Product product = new Product( 1L, "Phone", "Good Phone", 800.0, "https://img.com/img.png", Instant.parse( "2023-06-06T03:00:00Z" ) );
-        product.getCategories().add( Factory.createCategory() );
+        product.getCategories().add( createCategory() );
 
         return product;
     }
@@ -32,7 +32,7 @@ public class Factory
      */
     public static ProductDTO createProductDTO()
     {
-        Product product = Factory.createProduct();
+        Product product = createProduct();
         return new ProductDTO( product, product.getCategories() );
     }
 

@@ -39,25 +39,26 @@ public class ProductRepositoryTests
     }
 
     /**
-     * Find should find object when id exists.
+     * Find by id should return non empty optional when id exists.
      */
     @Test
-    public void findShouldFindObjectWhenIdExists()
+    public void findByIdShouldReturnNonEmptyOptionalWhenIdExists()
     {
         Optional<Product> optional = repository.findById( existingId );
 
         Assertions.assertTrue( optional.isPresent() );
     }
 
+
     /**
-     * Find should find object when id non exists.
+     * Find by id should return empty optional when id non exists.
      */
     @Test
-    public void findShouldFindObjectWhenIdNonExists()
+    public void findByIdShouldReturnEmptyOptionalWhenIdNonExists()
     {
         Optional<Product> optional = repository.findById( nonExistingId );
 
-        Assertions.assertFalse( optional.isPresent() );
+        Assertions.assertTrue( optional.isEmpty() );
     }
 
     /**
