@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  *
@@ -26,6 +28,9 @@ public class Category implements Serializable
 
     @Column( columnDefinition = "TIMESTAMP WITHOUT TIME ZONE" )
     private Instant updatedAt;
+
+    @ManyToMany( mappedBy = "categories" )
+    private Set<Product> products = new HashSet<>();
 
     /**
      * Category
@@ -123,6 +128,16 @@ public class Category implements Serializable
     public void preUpdate()
     {
         updatedAt = Instant.now();
+    }
+
+     /**
+     * getProducts
+     *
+     * @return Set<Product>
+     */
+    public Set<Product> getProducts()
+    {
+        return products;
     }
 
     /**

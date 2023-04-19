@@ -11,11 +11,15 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="backend" target="17" />
+      <module name="bds01" target="11" />
+      <module name="bds02" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="backend" options="-parameters" />
+      <module name="bds01" options="-parameters" />
+      <module name="bds02" options="-parameters" />
       <module name="dscatalog" options="-parameters" />
     </option>
   </component>
