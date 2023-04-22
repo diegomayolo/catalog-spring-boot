@@ -1,59 +1,58 @@
-package com.dm.dscatalog.entities;
+package com.dm.dscatalog.dto;
 
-import jakarta.persistence.*;
+import com.dm.dscatalog.entities.User;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
-/**
- *
- * @author dm
- */
-@Entity
-@Table( name = "tb_user" )
-public class User implements Serializable
+public class UserDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
     private String firstName;
     private String lastName;
-
-    @Column( unique = true )
     private String email;
-    private String password;
 
-    @ManyToMany( fetch = FetchType.EAGER )
-    @JoinTable( name = "tb_user_role",
-            joinColumns = @JoinColumn( name = "user_id" ),
-            inverseJoinColumns = @JoinColumn( name = "role_id" ) )
-    private Set<Role> roles = new HashSet<>();
+    Set<RoleDTO> roles = new HashSet<>();
 
     /**
-     * User
+     * UserDTO
      */
-    public User() {}
+    public UserDTO()
+    {
+    }
 
     /**
-     * User
+     * UserDTO
      *
      * @param id Long
      * @param firstName String
      * @param lastName String
      * @param email String
-     * @param password String
      */
-    public User( Long id, String firstName, String lastName, String email, String password )
+    public UserDTO( Long id, String firstName, String lastName, String email )
     {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
+    }
+
+    /**
+     * UserDTO
+     *
+     * @param entity User
+     */
+    public UserDTO( User entity )
+    {
+        id = entity.getId();
+        firstName = entity.getFirstName();
+        lastName = entity.getLastName();
+        email = entity.getEmail();
+
+        entity.getRoles().forEach( role -> this.roles.add( new RoleDTO( role ) ) );
     }
 
     /**
@@ -137,52 +136,12 @@ public class User implements Serializable
     }
 
     /**
-     * getPassword
-     *
-     * @return String
-     */
-    public String getPassword()
-    {
-        return password;
-    }
-
-    /**
-     * setPassword
-     *
-     * @param password String
-     */
-    public void setPassword( String password )
-    {
-        this.password = password;
-    }
-
-    /**
      * getRoles
      *
-     * @return Set<Role>
+     * @return Set<RoleDTO>
      */
-    public Set<Role> getRoles()
+    public Set<RoleDTO> getRoles()
     {
         return roles;
-    }
-
-    @Override
-    public boolean equals( Object o )
-    {
-        if ( this == o ) return true;
-        if ( o == null || getClass() != o.getClass() ) return false;
-        User user = ( User ) o;
-        return Objects.equals( id, user.id );
-    }
-
-    /**
-     * hashCode
-     *
-     * @return int
-     */
-    @Override
-    public int hashCode()
-    {
-        return Objects.hash( id );
     }
 }
