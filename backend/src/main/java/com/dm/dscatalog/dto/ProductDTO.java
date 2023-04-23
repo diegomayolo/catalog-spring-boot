@@ -2,6 +2,10 @@ package com.dm.dscatalog.dto;
 
 import com.dm.dscatalog.entities.Category;
 import com.dm.dscatalog.entities.Product;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -9,15 +13,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+/**
+ *
+ * @author dm
+ */
 public class ProductDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+
+    @Size(min = 5, max = 60, message = "size must be between 5 and 60 characters")
+    @NotBlank(message = "can't be empty")
     private String name;
+
+    @NotBlank(message = "can't be empty")
     private String description;
+
+    @Positive(message = "must be a positive value")
     private Double price;
     private String imgUrl;
+
+    @PastOrPresent(message = "must be a past or present date")
     private Instant date;
     private List<CategoryDTO> categories = new ArrayList<>();
 
