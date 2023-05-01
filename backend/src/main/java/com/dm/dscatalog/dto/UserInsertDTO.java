@@ -1,11 +1,14 @@
 package com.dm.dscatalog.dto;
 
+import com.dm.dscatalog.services.validation.UserInsertValid;
+
 import java.io.Serial;
 
 /**
  *
  * @author dm
  */
+@UserInsertValid
 public class UserInsertDTO extends UserDTO
 {
     @Serial
