@@ -2,6 +2,7 @@ package com.dm.dscatalog.services;
 
 import com.dm.dscatalog.dto.UserDTO;
 import com.dm.dscatalog.dto.UserInsertDTO;
+import com.dm.dscatalog.dto.UserUpdateDTO;
 import com.dm.dscatalog.entities.User;
 import com.dm.dscatalog.repositories.RoleRepository;
 import com.dm.dscatalog.repositories.UserRepository;
@@ -80,11 +81,11 @@ public class UserService
     * update
     *
     * @param id Long
-    * @param dto UserDTO
+    * @param dto UserUpdateDTO
     * @return UserDTO
     */
    @Transactional
-   public UserDTO update( Long id, UserDTO dto )
+   public UserDTO update( Long id, UserUpdateDTO dto )
    {
       try
       {
