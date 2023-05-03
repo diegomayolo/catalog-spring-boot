@@ -6,13 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="dscatalog" />
+        <module name="dslearn" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="backend" target="17" />
       <module name="bds01" target="11" />
       <module name="bds02" target="11" />
+      <module name="dscatalog" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -21,6 +22,7 @@
       <module name="bds01" options="-parameters" />
       <module name="bds02" options="-parameters" />
       <module name="dscatalog" options="-parameters" />
+      <module name="dslearn" options="-parameters" />
     </option>
   </component>
 </project>

@@ -1,12 +1,12 @@
 package com.dm.dscatalog.entities;
 
-import jakarta.persistence.*;
-
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
 
 /**
  *

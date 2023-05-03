@@ -4,10 +4,10 @@ import com.dm.dscatalog.dto.UserInsertDTO;
 import com.dm.dscatalog.entities.User;
 import com.dm.dscatalog.repositories.UserRepository;
 import com.dm.dscatalog.resources.exceptions.FieldMessage;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 import java.util.ArrayList;
 import java.util.List;
 

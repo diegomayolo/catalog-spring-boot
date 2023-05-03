@@ -5,13 +5,14 @@ import com.dm.dscatalog.entities.Category;
 import com.dm.dscatalog.repositories.CategoryRepository;
 import com.dm.dscatalog.services.exceptions.DatabaseException;
 import com.dm.dscatalog.services.exceptions.ResourceNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityNotFoundException;
 
 /**
  *
